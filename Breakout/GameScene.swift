@@ -14,6 +14,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var brick = SKSpriteNode()
     var loseZone = SKSpriteNode()
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+            let location = touch.location(in: self)
+            paddle.position.x = location.x
+        }
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+            let location = touch.location(in: self)
+            paddle.position.x = location.x
+        }
+    }
+    
     override func didMove(to view: SKView) {
         //This stuff happens once (When app opens)
         physicsWorld.contactDelegate = self
