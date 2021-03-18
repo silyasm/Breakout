@@ -16,6 +16,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var playLabel = SKLabelNode()
     var livesLabel = SKLabelNode()
     var scoreLabel = SKLabelNode()
+    var titleLabel = SKLabelNode()
     var playingGame = false
     var score = 0
     var lives = 3
@@ -42,6 +43,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func kickBall() {
         ball.physicsBody?.isDynamic = true
         ball.physicsBody?.applyImpulse(CGVector(dx: Int.random(in: -5...5), dy: 5))
+        ball.physicsBody!.velocity.dx = ball.physicsBody!.velocity.dx * CGFloat(1)
+        ball.physicsBody!.velocity.dy = ball.physicsBody!.velocity.dy * CGFloat(1)
     }
     
     func updateLabels() {
@@ -145,19 +148,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func makeLabels() {
         playLabel.fontSize = 24
         playLabel.text = "Tap to start"
-        livesLabel.fontName = "Arial"
+        playLabel.fontName = "Helvetica"
         playLabel.position = CGPoint(x: frame.midX, y: frame.midY - 50)
         playLabel.name = "playLabel"
         addChild(playLabel)
         
         livesLabel.fontSize = 18
         livesLabel.fontColor = .black
+        livesLabel.fontName = "Helvetica"
         livesLabel.position = CGPoint(x: frame.minX + 50, y: frame.minY + 18)
         addChild(livesLabel)
         
         scoreLabel.fontSize = 18
         scoreLabel.fontColor = .black
-        scoreLabel.fontName = "Arial"
+        scoreLabel.fontName = "Helvetica"
         scoreLabel.position = CGPoint(x: frame.maxX - 50, y: frame.minY + 18)
         addChild(scoreLabel)
     }
